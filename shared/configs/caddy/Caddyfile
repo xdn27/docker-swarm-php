@@ -1,0 +1,12 @@
+project.local {
+    reverse_proxy unit:8080
+}
+
+cms.local {
+    reverse_proxy unit_cms:81
+}
+
+info.local {
+    rewrite * /info{uri}
+    reverse_proxy unit:8080
+}

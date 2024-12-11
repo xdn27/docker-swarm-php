@@ -1,0 +1,20 @@
+services:
+  franken:
+    image: dunglas/frankenphp
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ../projects/cms:/app
+      - ../volumes/caddy/data:/data
+      - ../volumes/caddy/config:/config
+    tty: true
+    networks:
+      - app_network
+    environment:
+      - SERVER_NAME=project.local
+
+networks:
+  app_network:
+    external: true

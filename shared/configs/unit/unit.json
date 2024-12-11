@@ -1,0 +1,54 @@
+{
+    "listeners": {
+        "*:8080": {
+            "pass": "routes"
+        }
+    },
+    "routes": [
+        {
+            "match": {
+                "uri": [
+                    "*.php",
+                    "*.php/*"
+                ]
+            },
+            "action": {
+                "pass": "applications/www"
+            }
+        },
+        {
+            "match": {
+                "uri": [
+                    "*.html",
+                    "*.css",
+                    "*.js",
+                    "*.jpg",
+                    "*.png",
+                    "*.gif"
+                ]
+            },
+            "action": {
+                "share": "/www/$uri",
+                "fallback": {
+                    "pass": "applications/www"
+                }
+            }
+        },
+        {
+            "action": {
+                "pass": "applications/www"
+            }
+        }
+    ],
+    "applications": {
+        "www": {
+            "type": "php",
+            "processes": {
+                "max": 25,
+                "spare": 10,
+                "idle_timeout": 120
+            },
+            "root": "/www/"
+        }
+    }
+}
