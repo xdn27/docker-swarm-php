@@ -1,0 +1,23 @@
+services:
+  unit:
+    image: unit:php8.3
+    ports:
+      - 81:8080
+    networks:
+      - external-network
+    volumes:
+      - ./config.json:/docker-entrypoint.d/config.json
+      - ./projects:/www
+    # environment:
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 500M
+        reservations:
+          cpus: '0.1'
+          memory: 200M
+
+networks:
+  external-network:
+    external: true

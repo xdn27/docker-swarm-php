@@ -1,0 +1,47 @@
+{
+    "listeners": {
+        "*:8080": {
+            "pass": "routes"
+        }
+    },
+    "routes": [
+        {
+            "match": {
+                "uri": [
+                    "*.php",
+                    "*.php/*"
+                ]
+            },
+            "action": {
+                "pass": "applications/www/direct"
+            }
+        },
+        {
+            "action": {
+                "share": "/www/$uri",
+                "fallback": {
+                    "pass": "applications/www/index"
+                }
+            }
+        }
+    ],
+    "applications": {
+        "www": {
+            "type": "php",
+            "processes": {
+                "max": 25,
+                "spare": 10,
+                "idle_timeout": 120
+            },
+            "targets": {
+                "direct": {
+                    "root": "/www/"
+                },
+                "index": {
+                    "root": "/www/",
+                    "script": "index.php"
+                }
+            }
+        }
+    }
+}

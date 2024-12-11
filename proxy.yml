@@ -1,0 +1,14 @@
+services:
+  caddy:
+    image: caddy:latest
+    ports:
+      - "880:80" 
+      - "4443:443"
+    networks:
+      - external-network
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+
+networks:
+  external-network:
+    external: true

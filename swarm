@@ -1,0 +1,3 @@
+docker swarm join --token SWMTKN-1-17218rfje2og81cxzxckihq07kjugl4yzgr98z4yzcm0oent9n-eks523n32numsppijuchvb2iv 172.20.10.33:2377
+
+docker network create --driver overlay external-network

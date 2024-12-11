@@ -1,0 +1,3 @@
+infoswarm.local {
+    reverse_proxy unit:8080
+}
